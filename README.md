@@ -48,10 +48,10 @@ graph TD
 ## 🗺 Roadmap
 
 - [x] Phase 1: Project Setup & Architecture Definition
-- [ ] Phase 2: Core Domain Implementation (Entities & Business Rules)
-- [ ] Phase 3: Infrastructure Integration (Database & Auth)
-- [ ] Phase 4: Feature Implementation (Career Tracks, Lessons, Users)
-- [ ] Phase 5: Advanced Testing (Integration & Performance)
+- [x] Phase 2: Core Domain Implementation (User Entities, Auth Use Cases)
+- [/] Phase 3: Infrastructure Integration (In-Memory Adapters, JWT Auth)
+- [ ] Phase 4: Feature Implementation (Career Tracks, Lessons)
+- [ ] Phase 5: Advanced Testing (TDD implementation for Use Cases)
 - [ ] Phase 6: Deployment & CI/CD Setup
 
 ## 🚀 Lanzamiento y Construcción
