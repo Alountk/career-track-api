@@ -4,6 +4,13 @@ import { User } from '../../domain/entities/user.entity';
 import type { IUserRepository } from '../ports/user.repository';
 import { USER_REPOSITORY } from '../ports/user.repository';
 
+export interface RegisterUserCommand {
+  email: string;
+  password: string;
+  name: string;
+  lastName: string;
+}
+
 @Injectable()
 export class RegisterUserUseCase {
   constructor(
@@ -11,7 +18,7 @@ export class RegisterUserUseCase {
     private readonly userRepository: IUserRepository,
   ) {}
 
-  async execute(data: any): Promise<void> {
+  async execute(data: RegisterUserCommand): Promise<void> {
     const existingUser = await this.userRepository.findByEmail(data.email);
     if (existingUser) {
       throw new ConflictException('User already exists');

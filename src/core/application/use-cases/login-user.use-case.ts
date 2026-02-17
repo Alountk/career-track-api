@@ -4,6 +4,11 @@ import * as bcrypt from 'bcrypt';
 import type { IUserRepository } from "../ports/user.repository";
 import { USER_REPOSITORY } from "../ports/user.repository";
 
+export interface LoginUserCommand {
+    email: string;
+    password: string;
+}
+
 @Injectable()
 export class LoginUserUseCase {
     constructor(
@@ -12,7 +17,7 @@ export class LoginUserUseCase {
         private readonly jwtService: JwtService,
     ) {}
 
-    async execute(data: any): Promise<{ accessToken: string }> {
+    async execute(data: LoginUserCommand): Promise<{ accessToken: string }> {
         const user = await this.userRepository.findByEmail(data.email);
         
         if (!user) {

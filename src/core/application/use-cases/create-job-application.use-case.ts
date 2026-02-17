@@ -1,9 +1,19 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import type { IJobApplicationRepository } from '../ports/job-application.repository';
 import { JOB_APPLICATION_REPOSITORY } from '../ports/job-application.repository';
-import { JobApplication } from '../../domain/entities/job-application.entity';
+import { ApplicationStatus, JobApplication } from '../../domain/entities/job-application.entity';
 import type { IUserRepository } from '../ports/user.repository';
 import { USER_REPOSITORY } from '../ports/user.repository';
+
+export interface CreateJobApplicationCommand {
+    company: string;
+    position: string;
+    status: ApplicationStatus;
+    userId: string;
+    url?: string;
+    salaryRange?: string;
+    notes?: string;
+}
 
 @Injectable()
 export class CreateJobApplicationUseCase {
@@ -14,7 +24,7 @@ export class CreateJobApplicationUseCase {
     private readonly userRepository: IUserRepository,
   ) {}
 
-  async execute(data: any): Promise<void> {
+  async execute(data: CreateJobApplicationCommand): Promise<void> {
     const existingUser = await this.userRepository.findById(data.userId);
     if (!existingUser) {
       throw new NotFoundException('User not found');
