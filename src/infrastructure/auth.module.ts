@@ -5,6 +5,7 @@ import { LoginUserUseCase } from '../core/application/use-cases/login-user.use-c
 import { RegisterUserUseCase } from '../core/application/use-cases/register-user.use-case';
 import { InMemoryUserRepository } from './adapters/in-memory-user.repository';
 import { AuthController } from './controllers/auth.controller';
+import { GetProfileUseCase } from '../core/application/use-cases/get-profile.use-case';
 
 @Module({
   imports: [
@@ -17,11 +18,12 @@ import { AuthController } from './controllers/auth.controller';
   providers: [
     RegisterUserUseCase,
     LoginUserUseCase,
+    GetProfileUseCase,
     {
       provide: USER_REPOSITORY,
       useClass: InMemoryUserRepository,
     },
   ],
-  exports: [USER_REPOSITORY],
+  exports: [USER_REPOSITORY, JwtModule],
 })
 export class AuthModule {}

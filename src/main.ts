@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The Career Track API description')
     .setVersion('1.0')
     .addTag('health')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
