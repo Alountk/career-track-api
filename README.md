@@ -2,7 +2,7 @@
 
 ## 🚀 Project Overview
 
-This project is a high-performance backend built with **NestJS** and **TypeScript**, following **Hexagonal Architecture** (Ports and Adapters) principles to ensure scalability, maintainability, and testability.
+This project is a high-performance backend built with **NestJS** and **TypeScript**, designed for **tracking job applications** and processes. It follows **Hexagonal Architecture** (Ports and Adapters) principles to ensure scalability, maintainability, and testability.
 
 ## 🛠 Tech Stack
 
@@ -48,11 +48,12 @@ graph TD
 ## 🗺 Roadmap
 
 - [x] Phase 1: Project Setup & Architecture Definition
-- [x] Phase 2: Core Domain Implementation (User Entities, Auth Use Cases)
-- [/] Phase 3: Infrastructure Integration (In-Memory Adapters, JWT Auth)
-- [ ] Phase 4: Feature Implementation (Career Tracks, Lessons)
-- [ ] Phase 5: Advanced Testing (TDD implementation for Use Cases)
+- [x] Phase 2: Core Domain Implementation (User & Job Application Entities)
+- [x] Phase 3: Infrastructure Integration (In-Memory Adapters, JWT Auth)
+- [x] Phase 4: Feature Implementation (Job Applications: Create & List)
+- [x] Phase 5: Advanced Testing (TDD implementation for all Use Cases)
 - [ ] Phase 6: Deployment & CI/CD Setup
+- [ ] Phase 7: Database Integration
 
 ## 🚀 Lanzamiento y Construcción
 

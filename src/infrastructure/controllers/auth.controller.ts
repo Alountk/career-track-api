@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { LoginUserUseCase } from 'src/core/application/use-cases/login-user.use-case';
-import { RegisterUserUseCase } from 'src/core/application/use-cases/register-user.use-case';
+import { LoginUserUseCase } from '../../core/application/use-cases/login-user.use-case';
+import { RegisterUserUseCase } from '../../core/application/use-cases/register-user.use-case';
 import { RegisterUserDto } from './dtos/register-user.dto';
 import { LoginUserDto } from './dtos/login-user.dto';
 

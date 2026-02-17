@@ -83,6 +83,4 @@ describe('LoginUserUseCase', () => {
         }),
     ).rejects.toThrow(UnauthorizedException);
   });
-
-  it('', () => {});
 });

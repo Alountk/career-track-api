@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { USER_REPOSITORY } from 'src/core/application/ports/user.repository';
-import { LoginUserUseCase } from 'src/core/application/use-cases/login-user.use-case';
-import { RegisterUserUseCase } from 'src/core/application/use-cases/register-user.use-case';
+import { USER_REPOSITORY } from '../core/application/ports/user.repository';
+import { LoginUserUseCase } from '../core/application/use-cases/login-user.use-case';
+import { RegisterUserUseCase } from '../core/application/use-cases/register-user.use-case';
 import { InMemoryUserRepository } from './adapters/in-memory-user.repository';
 import { AuthController } from './controllers/auth.controller';
 
@@ -22,5 +22,6 @@ import { AuthController } from './controllers/auth.controller';
       useClass: InMemoryUserRepository,
     },
   ],
+  exports: [USER_REPOSITORY],
 })
 export class AuthModule {}
