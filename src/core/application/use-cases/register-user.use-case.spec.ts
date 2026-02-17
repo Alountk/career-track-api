@@ -8,6 +8,7 @@ describe('RegisterUserUseCase', () => {
   beforeEach(() => {
     userRepository = {
       save: jest.fn(),
+      findByEmail: jest.fn(),
     } as any;
     useCase = new RegisterUserUseCase(userRepository);
   });
@@ -22,10 +23,16 @@ describe('RegisterUserUseCase', () => {
       role: 'user',
     };
 
+    // Configure the mock to return a user when findByEmail is called
+    userRepository.findByEmail.mockResolvedValue(null);
+
     // WHEN
     await useCase.execute(data);
 
     // THEN
-    expect(userRepository.save).toHaveBeenCalledWith(data);
+    expect(userRepository.save).toHaveBeenCalled();
+    const savedUser = userRepository.save.mock.calls[0][0];
+    expect(savedUser.email).toBe(data.email);
+    expect(savedUser.password).not.toBe(data.password);
   });
 });

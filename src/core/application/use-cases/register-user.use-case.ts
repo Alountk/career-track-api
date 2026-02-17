@@ -5,10 +5,10 @@ import type { IUserRepository } from '../ports/user.repository';
 import { USER_REPOSITORY } from '../ports/user.repository';
 
 export interface RegisterUserCommand {
-  email: string;
-  password: string;
   name: string;
   lastName: string;
+  email: string;
+  password: string;
 }
 
 @Injectable()
