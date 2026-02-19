@@ -50,7 +50,7 @@ graph TD
 - [x] Phase 1: Project Setup & Architecture Definition
 - [x] Phase 2: Core Domain Implementation (User & Job Application Entities)
 - [x] Phase 3: Infrastructure Integration (In-Memory Adapters, JWT Auth)
-- [x] Phase 4: Feature Implementation (Job Applications: Create & List)
+- [x] Phase 4: Feature Implementation (Job Applications: CRUD - Create, List, Update, Delete)
 - [x] Phase 5: Advanced Testing (TDD implementation for all Use Cases)
 - [ ] Phase 6: Deployment & CI/CD Setup
 - [ ] Phase 7: Database Integration

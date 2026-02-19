@@ -76,4 +76,8 @@ describe('FindAllJobApplicationUseCase', () => {
     );
     expect(result).toEqual(jobApplications);
   });
+
+  it('if job application don\'t exist throw a not found', () => {
+
+  })
 });
