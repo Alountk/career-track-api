@@ -10,8 +10,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { DeleteJobApplicationUseCase } from 'src/core/application/use-cases/delete-job-application.use-case';
-import { UpdateJobApplicationUseCase } from 'src/core/application/use-cases/update-job-application.use-case';
+import { DeleteJobApplicationUseCase } from '../../core/application/use-cases/delete-job-application.use-case';
+import { UpdateJobApplicationUseCase } from '../../core/application/use-cases/update-job-application.use-case';
 import { CreateJobApplicationUseCase } from '../../core/application/use-cases/create-job-application.use-case';
 import { FindAllJobApplicationUseCase } from '../../core/application/use-cases/find-all-job-application.use-case';
 import { AuthGuard } from '../auth/guards/jwt-auth.guard';

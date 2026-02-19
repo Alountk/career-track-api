@@ -52,8 +52,13 @@ graph TD
 - [x] Phase 3: Infrastructure Integration (In-Memory Adapters, JWT Auth)
 - [x] Phase 4: Feature Implementation (Job Applications: CRUD - Create, List, Update, Delete)
 - [x] Phase 5: Advanced Testing (TDD implementation for all Use Cases)
-- [ ] Phase 6: Deployment & CI/CD Setup
-- [ ] Phase 7: Database Integration
+- [ ] Phase 6: Refactoring & Security Hardening
+  - [ ] Implement `@nestjs/config` for environment variables (`.env`).
+  - [ ] Add DTO validation with `class-validator` and `class-transformer`.
+  - [ ] Refine Exception messages and Repository error states.
+  - [ ] Standardize all imports to relative paths for consistency.
+- [ ] Phase 7: Database Integration (PostgreSQL + TypeORM/Prisma)
+- [ ] Phase 8: Deployment & CI/CD Setup
 
 ## 🚀 Lanzamiento y Construcción
 
