@@ -8,11 +8,13 @@ export class InMemoryJobRepository implements IJobApplicationRepository {
     this.jobs.push(jobApplication);
   }
 
-  async update(jobApplication: JobApplication): Promise<void> {
+  async update(jobApplication: JobApplication): Promise<boolean> {
     const index = this.jobs.findIndex((j) => j.id === jobApplication.id);
     if (index !== -1) {
       this.jobs[index] = jobApplication;
+      return true;
     }
+    return false;
   }
 
   async delete(id: string): Promise<void> {

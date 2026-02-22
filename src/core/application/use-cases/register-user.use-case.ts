@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../../domain/entities/user.entity';
 import type { IUserRepository } from '../ports/user.repository';
 import { USER_REPOSITORY } from '../ports/user.repository';
-import { UserAlreadyExistsException } from 'src/core/domain/exceptions/user-already-exists.exception';
+import { UserAlreadyExistsException } from '../../domain/exceptions/user-already-exists.exception';
 
 export interface RegisterUserCommand {
   name: string;

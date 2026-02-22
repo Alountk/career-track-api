@@ -3,7 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from 'bcrypt';
 import type { IUserRepository } from "../ports/user.repository";
 import { USER_REPOSITORY } from "../ports/user.repository";
-import { InvalidCredentialsException } from "src/core/domain/exceptions/invalid-credentials.exception";
+import { InvalidCredentialsException } from "../../domain/exceptions/invalid-credentials.exception";
 
 export interface LoginUserCommand {
     email: string;
