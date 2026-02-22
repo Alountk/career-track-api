@@ -3,6 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from 'bcrypt';
 import type { IUserRepository } from "../ports/user.repository";
 import { USER_REPOSITORY } from "../ports/user.repository";
+import { InvalidCredentialsException } from "src/core/domain/exceptions/invalid-credentials.exception";
 
 export interface LoginUserCommand {
     email: string;
@@ -21,13 +22,13 @@ export class LoginUserUseCase {
         const user = await this.userRepository.findByEmail(data.email);
         
         if (!user) {
-            throw new UnauthorizedException('Invalid credentials');
+            throw new InvalidCredentialsException();
         }
 
         const isPasswordValid = await bcrypt.compare(data.password, user.password);
 
         if(!isPasswordValid) {
-            throw new UnauthorizedException('Invalid credentials');
+            throw new InvalidCredentialsException();
         }
 
         const payload = { sub: user.id, email: user.email, role: user.role }
