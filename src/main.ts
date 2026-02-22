@@ -13,8 +13,8 @@ async function bootstrap() {
   }));
 
   const config = new DocumentBuilder()
-    .setTitle('Career Track API')
-    .setDescription('The Career Track API description')
+    .setTitle('Job Application Track API')
+    .setDescription('The Job Application Track API description')
     .setVersion('1.0')
     .addTag('health')
     .addBearerAuth()
