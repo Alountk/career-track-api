@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../../domain/entities/user.entity';
 import type { IUserRepository } from '../ports/user.repository';
 import { USER_REPOSITORY } from '../ports/user.repository';
+import { UserAlreadyExistsException } from 'src/core/domain/exceptions/user-already-exists.exception';
 
 export interface RegisterUserCommand {
   name: string;
@@ -21,7 +22,7 @@ export class RegisterUserUseCase {
   async execute(data: RegisterUserCommand): Promise<void> {
     const existingUser = await this.userRepository.findByEmail(data.email);
     if (existingUser) {
-      throw new ConflictException('User already exists');
+      throw new UserAlreadyExistsException(data.email);
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
