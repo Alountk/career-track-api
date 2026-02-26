@@ -57,7 +57,12 @@ graph TD
   - [x] Add DTO validation with `class-validator` and `class-transformer`.
   - [x] Refine Exception messages and Repository error states.
   - [x] Standardize all imports to relative paths for consistency.
-- [ ] Phase 7: Database Integration (PostgreSQL + TypeORM)
+- [/] Phase 7: Database Integration (PostgreSQL + TypeORM)
+  - [x] External Infrastructure setup & Dynamic Env loading.
+  - [x] Database Schemas (ORM Entities) & Domain Mappers.
+  - [x] TypeORM Repository Adapters implementation.
+  - [ ] Implement Env Variable Validation (Joi/Zod).
+  - [ ] Activate TypeORM Repositories in Modules.
 - [ ] Phase 8: Deployment & CI/CD Setup
 
 ## 🚀 Lanzamiento y Construcción

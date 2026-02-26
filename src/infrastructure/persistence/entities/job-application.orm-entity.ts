@@ -1,4 +1,4 @@
-import { ApplicationStatus } from 'src/core/domain/entities/job-application.entity';
+import { ApplicationStatus } from '../../../core/domain/entities/job-application.entity';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 import { UserOrmEntity } from './user.orm-entity';
 
@@ -25,11 +25,11 @@ export class JobApplicationOrmEntity {
   @JoinColumn({ name: 'userId' })
   user: UserOrmEntity;
   @Column({ nullable: true })
-  url: string;
+  url?: string;
   @Column({ nullable: true })
-  salaryRange: string;
+  salaryRange?: string;
   @Column({ type: 'text', nullable: true })
-  notes: string;
+  notes?: string;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()

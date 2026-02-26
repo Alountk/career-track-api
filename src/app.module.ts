@@ -11,6 +11,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: process.env.NODE_ENV
+        ? `.env.${process.env.NODE_ENV}`
+        : '.env.local',
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
