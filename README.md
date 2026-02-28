@@ -1,97 +1,74 @@
-# Career Track API - NestJS Backend
+# Career Track - Monorepo
 
 ## 🚀 Project Overview
 
-This project is a high-performance backend built with **NestJS** and **TypeScript**, designed for **tracking job applications** and processes. It follows **Hexagonal Architecture** (Ports and Adapters) principles to ensure scalability, maintainability, and testability.
+A high-performance job application tracking system built with **NestJS** (Backend) and **Astro** (Frontend), utilizing a **Hexagonal Architecture** across the entire stack.
 
-## 🛠 Tech Stack
+## 🏗 Monorepo Structure
 
-- **Framework:** NestJS
+We use **pnpm workspaces** to manage multiple packages in a single repository.
+
+- `apps/api`: NestJS Backend (REST API).
+- `apps/web`: Astro + React Frontend.
+
+## 🛠 Tech Stack (Universal)
+
 - **Language:** TypeScript
-- **Documentation:** Swagger (OpenAPI)
-- **Testing:** Jest & Supertest
-- **Architecture:** Hexagonal (Clean Architecture)
+- **Architectural Pattern:** Hexagonal (Ports and Adapters)
+- **Package Manager:** [pnpm](https://pnpm.io/)
+- **Quality Control:** Husky + lint-staged + ESLint 9 + Prettier
 
-## 🏗 Architecture: Hexagonal (Ports and Adapters)
+## 🚀 Getting Started
 
-The project is structured to decouple the business logic from external dependencies (frameworks, databases, APIs).
+### Prerequisites
 
-```mermaid
-graph TD
-    subgraph Infrastructure
-        A[Controllers]
-        B[Adapters/Repositories]
-    end
-    subgraph Application
-        C[Ports/Interfaces]
-        D[Use Cases/Services]
-    end
-    subgraph Domain
-        E[Entities]
-        F[Value Objects]
-    end
+- Node.js (v18+)
+- pnpm (`npm install -g pnpm`)
 
-    A --> C
-    D --> E
-    D --> F
-    B --> C
-    D -.-> C
-```
-
-### Folder Structure
-
-- `src/core/domain`: Contains entities and business rules (Pure TS).
-- `src/core/application`: Contains usecases and port definitions (Interfaces).
-- `src/infrastructure/adapters`: Implementations of the ports (Database, Externals).
-- `src/infrastructure/controllers`: Entry points (NestJS specific).
-
-## 🗺 Roadmap
-
-- [x] Phase 1: Project Setup & Architecture Definition
-- [x] Phase 2: Core Domain Implementation (User & Job Application Entities)
-- [x] Phase 3: Infrastructure Integration (In-Memory Adapters, JWT Auth)
-- [x] Phase 4: Feature Implementation (Job Applications: CRUD - Create, List, Update, Delete)
-- [x] Phase 5: Advanced Testing (TDD implementation for all Use Cases)
-- [x] Phase 6: Refactoring & Security Hardening
-  - [x] Implement `@nestjs/config` for environment variables (`.env`).
-  - [x] Add DTO validation with `class-validator` and `class-transformer`.
-  - [x] Refine Exception messages and Repository error states.
-  - [x] Standardize all imports to relative paths for consistency.
-- [/] Phase 7: Database Integration (PostgreSQL + TypeORM)
-  - [x] External Infrastructure setup & Dynamic Env loading.
-  - [x] Database Schemas (ORM Entities) & Domain Mappers.
-  - [x] TypeORM Repository Adapters implementation.
-  - [ ] Implement Env Variable Validation (Joi/Zod).
-  - [ ] Activate TypeORM Repositories in Modules.
-- [ ] Phase 8: Deployment & CI/CD Setup
-
-## 🚀 Lanzamiento y Construcción
+### Installation
 
 ```bash
-# Instalación de dependencias
-npm install
+pnpm install
+```
 
-# Desarrollo (con hot-reload)
-npm run start:dev
+### Running the Project
 
-# Construcción para producción
-npm run build
+You can run both applications simultaneously or individually:
 
-# Ejecución en producción
-npm run start:prod
+```bash
+# Run everything (API + Web)
+pnpm run dev
+
+# Run Backend only
+pnpm --filter career-track-api run start:dev
+
+# Run Frontend only
+pnpm --filter @career-track/web run dev
 ```
 
 ## 📖 API Documentation
 
-Once the server is running, visit:
+Once the backend is running, visit:
 `http://localhost:3000/api/docs`
 
-## 🧪 Running Tests
+## 🧪 Testing and Quality
+
+We use **Husky** to ensure all code passes linting and basic checks before every commit.
 
 ```bash
-# Unit tests
-npm run test
+# Run linting for the entire monorepo
+pnpm run lint
 
-# E2E tests
-npm run test:e2e
+# Run tests
+pnpm -r test
 ```
+
+## 🗺 Roadmap
+
+- [x] Phase 1: Monorepo Setup & Migration to pnpm
+- [x] Phase 2: Astro Frontend Scaffolding (Hexagonal Ready)
+- [x] Phase 3: Infrastructure & Quality Setup (Husky, ESLint, Prettier)
+- [ ] Phase 4: UI Design System (Tailwind CSS Integration)
+- [ ] Phase 5: Core Features Implementation (Dashboard, Job Tracking)
+- [ ] Phase 6: Sync Backend Entities with Frontend Domain
+- [ ] Phase 7: Deployment (Vercel/Docker)
