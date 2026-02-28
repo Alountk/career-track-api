@@ -13,7 +13,10 @@
   },
   "lint-staged": {
     "apps/api/**/*.ts": [
-      "npm run lint -w apps/api"
+      "pnpm run lint --filter career-track-api"
+    ],
+    "apps/web/**/*.{ts,tsx,astro}": [
+      "pnpm run lint --filter @career-track/web"
     ]
   }
 }
