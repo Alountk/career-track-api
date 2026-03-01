@@ -1,5 +1,5 @@
-import { JobApplication } from "../../../core/domain/entities/job-application.entity";
-import { JobApplicationOrmEntity } from "../entities/job-application.orm-entity";
+import { JobApplication } from '../../../core/domain/entities/job-application.entity';
+import { JobApplicationOrmEntity } from '../entities/job-application.orm-entity';
 
 export class JobApplicationMapper {
   static toDomain(ormEntity: JobApplicationOrmEntity): JobApplication {
@@ -29,5 +29,4 @@ export class JobApplicationMapper {
     orm.notes = domainEntity.notes;
     return orm;
   }
-
 }

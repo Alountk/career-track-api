@@ -43,7 +43,9 @@ export class UpdateJobApplicationUseCase {
       throw new NotFoundException('Job application not found');
     }
     if (existingJob.userId !== userId) {
-      throw new UnauthorizedException('User is not the owner of the job application');
+      throw new UnauthorizedException(
+        'User is not the owner of the job application',
+      );
     }
 
     const updatedJobApplication = new JobApplication(

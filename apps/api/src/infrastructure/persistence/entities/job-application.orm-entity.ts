@@ -1,5 +1,13 @@
 import { ApplicationStatus } from '../../../core/domain/entities/job-application.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { UserOrmEntity } from './user.orm-entity';
 
 @Entity('job_applications')
@@ -19,8 +27,8 @@ export class JobApplicationOrmEntity {
   status: ApplicationStatus;
   @Column()
   userId: string;
-  
-  // Referential integrity 
+
+  // Referential integrity
   @ManyToOne(() => UserOrmEntity)
   @JoinColumn({ name: 'userId' })
   user: UserOrmEntity;

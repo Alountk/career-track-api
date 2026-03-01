@@ -5,7 +5,9 @@ import { JobApplication } from '../../core/domain/entities/job-application.entit
 import { JobApplicationOrmEntity } from '../persistence/entities/job-application.orm-entity';
 import { JobApplicationMapper } from '../persistence/mappers/job-application.mapper';
 
-export class TypeOrmJobApplicationRepository implements IJobApplicationRepository {
+export class TypeOrmJobApplicationRepository
+  implements IJobApplicationRepository
+{
   constructor(
     @InjectRepository(JobApplicationOrmEntity)
     private readonly repository: Repository<JobApplicationOrmEntity>,
