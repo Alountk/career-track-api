@@ -1,4 +1,5 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from '../../domain/entities/user.entity';
 import type { IUserRepository } from '../ports/user.repository';
@@ -17,9 +18,15 @@ export class RegisterUserUseCase {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly userRepository: IUserRepository,
+    private readonly jwtService: JwtService,
   ) {}
 
-  async execute(data: RegisterUserCommand): Promise<void> {
+  async execute(data: RegisterUserCommand): Promise<{
+    id: string;
+    email: string;
+    role: string;
+    accessToken: string;
+  }> {
     const existingUser = await this.userRepository.findByEmail(data.email);
     if (existingUser) {
       throw new UserAlreadyExistsException(data.email);
@@ -28,16 +35,25 @@ export class RegisterUserUseCase {
     const hashedPassword = await bcrypt.hash(data.password, 10);
 
     const user = new User(
-        crypto.randomUUID(),
-        data.name,
-        data.lastName,
-        data.email,
-        hashedPassword,
-        'user',
-        new Date(),
-        new Date()
+      crypto.randomUUID(),
+      data.name,
+      data.lastName,
+      data.email,
+      hashedPassword,
+      'user',
+      new Date(),
+      new Date(),
     );
 
     await this.userRepository.save(user);
+
+    const payload = { sub: user.id, email: user.email, role: user.role };
+
+    return {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      accessToken: await this.jwtService.signAsync(payload),
+    };
   }
 }

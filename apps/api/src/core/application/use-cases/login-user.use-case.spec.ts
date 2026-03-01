@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../../../core/domain/entities/user.entity';
 import type { IUserRepository } from '../ports/user.repository';
 import { LoginUserUseCase } from './login-user.use-case';
-import { UnauthorizedException } from '@nestjs/common';
+import { InvalidCredentialsException } from '../../domain/exceptions/invalid-credentials.exception';
 
 describe('LoginUserUseCase', () => {
   let useCase: LoginUserUseCase;
@@ -53,6 +53,9 @@ describe('LoginUserUseCase', () => {
 
     // THEN (RESULT)
     expect(result).toEqual({
+      id: 'user-id',
+      email: 'test@example.com',
+      role: 'user',
       accessToken: 'mock-jwt-token',
     });
     expect(userRepository.findByEmail).toHaveBeenCalledWith('test@example.com');
@@ -74,13 +77,13 @@ describe('LoginUserUseCase', () => {
       new Date(),
     );
     userRepository.findByEmail.mockResolvedValue(mockUser);
-    
+
     // WHEN & THEN
     await expect(
-        useCase.execute({
-            email: 'test@example.com',
-            password: 'WrongPassword',
-        }),
-    ).rejects.toThrow(UnauthorizedException);
+      useCase.execute({
+        email: 'test@example.com',
+        password: 'WrongPassword',
+      }),
+    ).rejects.toThrow(InvalidCredentialsException);
   });
 });
