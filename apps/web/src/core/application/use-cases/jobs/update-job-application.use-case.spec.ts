@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { UpdateJobApplicationUseCase } from './update-job-application.use-case';
-import { createJobApplicationMock } from '../../../../test/factories/job-application.factory';
+import { createJobApplicationMock } from '../../../../../test/factories/job-application.factory';
 import type { IJobApplicationRepository } from '@core/domain/repositories/job-application.repository';
 
 describe('UpdateJobApplicationUseCase', () => {
