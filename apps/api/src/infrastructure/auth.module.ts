@@ -18,7 +18,7 @@ import { UserOrmEntity } from './persistence/entities/user.orm-entity';
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: {
-          expiresIn: configService.get<string>('JWT_EXPIRES_IN') as any,
+          expiresIn: configService.get<string>('JWT_EXPIRES_IN') as any, // Restore for a moment to see if it fixes the lint error from previous turn
         },
       }),
     }),

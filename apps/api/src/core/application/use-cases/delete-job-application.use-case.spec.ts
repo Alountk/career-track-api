@@ -14,7 +14,10 @@ describe('DeleteJobApplicationUseCase', () => {
     jobRepository = {
       findById: jest.fn(),
       delete: jest.fn(),
-    } as any;
+      create: jest.fn(),
+      update: jest.fn(),
+      findAllByUserId: jest.fn(),
+    } as unknown as jest.Mocked<IJobApplicationRepository>;
 
     useCase = new DeleteJobApplicationUseCase(jobRepository);
   });

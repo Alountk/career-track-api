@@ -14,7 +14,10 @@ describe('UpdateJobApplicationUseCase', () => {
     jobRepository = {
       findById: jest.fn(),
       update: jest.fn(),
-    } as any;
+      create: jest.fn(),
+      delete: jest.fn(),
+      findAllByUserId: jest.fn(),
+    } as unknown as jest.Mocked<IJobApplicationRepository>;
 
     useCase = new UpdateJobApplicationUseCase(jobRepository);
   });

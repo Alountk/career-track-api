@@ -5,14 +5,20 @@ import {
   JobApplication,
 } from '../../domain/entities/job-application.entity';
 import { User } from '../../domain/entities/user.entity';
-import { JOB_APPLICATION_REPOSITORY } from '../ports/job-application.repository';
-import { USER_REPOSITORY } from '../ports/user.repository';
+import {
+  JOB_APPLICATION_REPOSITORY,
+  type IJobApplicationRepository,
+} from '../ports/job-application.repository';
+import {
+  USER_REPOSITORY,
+  type IUserRepository,
+} from '../ports/user.repository';
 import { FindJobApplicationByIdUseCase } from './find-job-application-by-id.use-case';
 
 describe('FindJobApplicationByIdUseCase', () => {
   let useCase: FindJobApplicationByIdUseCase;
-  let jobApplicationRepo: any;
-  let userRepo: any;
+  let jobApplicationRepo: jest.Mocked<IJobApplicationRepository>;
+  let userRepo: jest.Mocked<IUserRepository>;
 
   const userId = 'user-uuid';
   const jobId = 'job-uuid';
@@ -40,10 +46,16 @@ describe('FindJobApplicationByIdUseCase', () => {
   beforeEach(async () => {
     jobApplicationRepo = {
       findById: jest.fn(),
-    };
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+      findAllByUserId: jest.fn(),
+    } as unknown as jest.Mocked<IJobApplicationRepository>;
     userRepo = {
       findById: jest.fn(),
-    };
+      save: jest.fn(),
+      findByEmail: jest.fn(),
+    } as unknown as jest.Mocked<IUserRepository>;
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [

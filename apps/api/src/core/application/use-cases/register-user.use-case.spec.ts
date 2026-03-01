@@ -11,11 +11,12 @@ describe('RegisterUserUseCase', () => {
     userRepository = {
       save: jest.fn(),
       findByEmail: jest.fn(),
-    } as any;
+      findById: jest.fn(),
+    } as unknown as jest.Mocked<IUserRepository>;
 
     jwtService = {
       signAsync: jest.fn(),
-    } as any;
+    } as unknown as jest.Mocked<JwtService>;
 
     useCase = new RegisterUserUseCase(userRepository, jwtService);
   });

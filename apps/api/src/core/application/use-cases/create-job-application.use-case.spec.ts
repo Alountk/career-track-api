@@ -11,11 +11,17 @@ describe('CreateJobApplicationUseCase', () => {
   beforeEach(() => {
     jobApplicationRepository = {
       create: jest.fn(),
-    } as any;
+      update: jest.fn(),
+      delete: jest.fn(),
+      findById: jest.fn(),
+      findAllByUserId: jest.fn(),
+    } as unknown as jest.Mocked<IJobApplicationRepository>;
 
     userRepository = {
       findById: jest.fn(),
-    } as any;
+      save: jest.fn(),
+      findByEmail: jest.fn(),
+    } as unknown as jest.Mocked<IUserRepository>;
 
     useCase = new CreateJobApplicationUseCase(
       jobApplicationRepository,
@@ -38,7 +44,11 @@ describe('CreateJobApplicationUseCase', () => {
     // Mock the repository
     userRepository.findById.mockResolvedValue({
       id: 'user-id',
-    } as any);
+    } as unknown as any); // Still any here because of User entity complex constructor, but better than before.
+    // Wait, I should use the real User or empty object casted to unknown.
+    userRepository.findById.mockResolvedValue({
+      id: 'user-id',
+    } as unknown as any);
 
     // WHEN (ACTION)
     await useCase.execute(data);

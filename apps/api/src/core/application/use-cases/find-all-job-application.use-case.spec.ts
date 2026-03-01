@@ -13,11 +13,17 @@ describe('FindAllJobApplicationUseCase', () => {
   beforeEach(() => {
     jobApplicationRepository = {
       findAllByUserId: jest.fn(),
-    } as any;
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+      findById: jest.fn(),
+    } as unknown as jest.Mocked<IJobApplicationRepository>;
 
     userRepository = {
       findById: jest.fn(),
-    } as any;
+      save: jest.fn(),
+      findByEmail: jest.fn(),
+    } as unknown as jest.Mocked<IUserRepository>;
 
     createJobApplicationUseCase = new CreateJobApplicationUseCase(
       jobApplicationRepository,
@@ -65,7 +71,7 @@ describe('FindAllJobApplicationUseCase', () => {
     jobApplicationRepository.findAllByUserId.mockResolvedValue(jobApplications);
     userRepository.findById.mockResolvedValue({
       id: 'user-id',
-    } as any);
+    } as unknown as any);
 
     // WHEN (ACTION)
     const result = await useCase.execute(userId);

@@ -10,7 +10,9 @@ describe('GetProfileUseCase', () => {
   beforeEach(() => {
     userRepository = {
       findByEmail: jest.fn(),
-    } as any;
+      findById: jest.fn(),
+      save: jest.fn(),
+    } as unknown as jest.Mocked<IUserRepository>;
     useCase = new GetProfileUseCase(userRepository);
   });
 
@@ -43,7 +45,7 @@ describe('GetProfileUseCase', () => {
       role: 'user',
     });
     // Verify security: The password no should be in result
-    expect((result as any).password).toBeUndefined();
+    expect(result).not.toHaveProperty('password');
   });
 
   it('should throw NotFoundException when user does not exist', async () => {
