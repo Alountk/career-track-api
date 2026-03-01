@@ -5,6 +5,10 @@ export class UpdateJobApplicationUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}
 
   async execute(jobApplication: JobApplication): Promise<boolean> {
-    return await this.repository.update(jobApplication);
+    try {
+      return await this.repository.update(jobApplication);
+    } catch (error) {
+      throw new Error('API Failure');
+    }
   }
 }

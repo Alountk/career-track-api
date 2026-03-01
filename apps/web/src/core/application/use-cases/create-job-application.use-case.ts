@@ -5,6 +5,10 @@ export class CreateJobApplicationUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}
 
   async execute(jobApplication: JobApplication): Promise<void> {
-    return await this.repository.create(jobApplication);
+    try {
+      await this.repository.create(jobApplication);
+    } catch (error) {
+      throw new Error('API Failure');
+    }
   }
 }

@@ -6,7 +6,8 @@
       "@core/*": ["src/core/*"],
       "@infrastructure/*": ["src/infrastructure/*"],
       "@components/*": ["src/infrastructure/components/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@test/*": ["test/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"

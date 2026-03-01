@@ -5,8 +5,10 @@ export class GetJobApplicationByIdUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}
 
   async execute(id: string): Promise<JobApplication | null> {
-    return await this.repository.findById(id).catch(() => {
+    try {
+      return await this.repository.findById(id);
+    } catch (error) {
       throw new Error('API Failure');
-    });
+    }
   }
 }

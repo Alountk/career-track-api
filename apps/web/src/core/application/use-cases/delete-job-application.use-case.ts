@@ -4,6 +4,10 @@ export class DeleteJobApplicationUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}
 
   async execute(id: string): Promise<void> {
-    return await this.repository.delete(id);
+    try {
+      await this.repository.delete(id);
+    } catch (error) {
+      throw new Error('API Failure');
+    }
   }
 }
