@@ -72,3 +72,34 @@ pnpm -r test
 - [ ] Phase 5: Core Features Implementation (Dashboard, Job Tracking)
 - [ ] Phase 6: Sync Backend Entities with Frontend Domain
 - [ ] Phase 7: Deployment (Vercel/Docker)
+
+---
+
+## 🏛 Estándar Consolidado de Desarrollo
+
+Para mantener la coherencia en todo el monorepo (API y Web), seguimos estas reglas estrictas:
+
+### 🖋 Nomenclatura
+
+- **Archivos:** `kebab-case` (ej: `create-job-application.use-case.ts`).
+- **Clases:** `PascalCase` con sufijo descriptivo (ej: `CreateJobApplicationUseCase`).
+- **Interfaces (Ports):** Prefijo `I` (ej: `IJobApplicationRepository`).
+- **Variables y Funciones:** `camelCase`.
+
+### 🏗 Arquitectura Hexagonal
+
+Seguimos el patrón de **Puertos y Adaptadores**:
+
+- **Domain:** Entidades puras y reglas de negocio.
+- **Application:** Casos de uso y puertos (interfaces).
+- **Infrastructure:** Adaptadores (API, DB), controladores y componentes de UI.
+
+---
+
+## 👥 Agentes Especialistas
+
+Este proyecto cuenta con la guía de tres mentores IA especializados:
+
+- 🏛 **Archi (Frontend Architect):** Guardián de la Arquitectura Hexagonal y patrones de diseño. Prioriza el desacoplamiento.
+- 🎨 **Indigo (Tailwind Expert):** Experto en UI/UX Premium, Design Tokens y estética moderna con Tailwind CSS.
+- 🧪 **Vera (Testing Expert):** Especialista en TDD, BDD y robustez. Aplicando el Pareto 20/80 para máxima cobertura con mínimo esfuerzo.

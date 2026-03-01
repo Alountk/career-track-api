@@ -62,8 +62,18 @@ Or from within this directory:
 pnpm dev
 ```
 
-## 🧪 Best Practices
+## 🧪 Best Practices & Standards
 
-- **Zero placeholders**: Always use real assets or generated mocks.
-- **Type Safety**: Use Zod for runtime validation from API responses.
-- **Component Island Architecture**: Use React only where interactivity is required.
+### 🖋 Nomenclatura Consolidada
+
+- **Archivos:** `kebab-case.extension` (ej: `login.use-case.ts`).
+- **Clases:** `PascalCaseUseCase` (ej: `LoginUseCase`).
+- **Componentes:** `PascalCase.tsx`.
+- **Mocks/Factories:** `camelCase` (ej: `createJobApplicationMock`).
+
+### 🏛 Principios de Diseño
+
+- **Zero placeholders**: Siempre usa assets reales o generados.
+- **Type Safety**: Uso estricto de Zod para validación en tiempo de ejecución.
+- **Pareto 20/80**: Foco en testear los Casos de Uso (Application Layer) para asegurar el 80% de la lógica con el 20% del esfuerzo.
+- **Component Island Architecture**: React solo donde la interactividad lo requiera.
