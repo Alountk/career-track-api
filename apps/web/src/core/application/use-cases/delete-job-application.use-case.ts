@@ -1,4 +1,4 @@
-import { IJobApplicationRepository } from '@core/domain/repositories/job-application.repository';
+import type { IJobApplicationRepository } from "@core/domain/repositories/job-application.repository";
 
 export class DeleteJobApplicationUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}

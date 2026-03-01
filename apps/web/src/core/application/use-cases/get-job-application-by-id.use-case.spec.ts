@@ -1,8 +1,8 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { IJobApplicationRepository } from '@core/domain/repositories/job-application.repository';
-import { GetJobApplicationByIdUseCase } from './get-job-application-by-id.use-case';
-import { JobApplication } from '@core/domain/entities/job-application.entity';
+import type { JobApplication } from '@core/domain/entities/job-application.entity';
+import type { IJobApplicationRepository } from '@core/domain/repositories/job-application.repository';
 import { createJobApplicationMock } from '@test/factories/job-application.factory';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { GetJobApplicationByIdUseCase } from './get-job-application-by-id.use-case';
 
 describe('GetJobApplicationByIdUseCase', () => {
   let useCase: GetJobApplicationByIdUseCase;

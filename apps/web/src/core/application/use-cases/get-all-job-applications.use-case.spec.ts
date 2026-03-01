@@ -1,16 +1,15 @@
+import { createJobApplicationListMock } from '@test/factories/job-application.factory';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { JobApplication } from '../../domain/entities/job-application.entity';
 import type { IJobApplicationRepository } from '../../domain/repositories/job-application.repository';
 import { GetAllJobApplicationsUseCase } from './get-all-job-applications.use-case';
-import { createJobApplicationListMock } from '@test/factories/job-application.factory';
+import type { JobApplication } from '@core/domain/entities/job-application.entity';
 
 describe('GetAllJobApplicationsUseCase', () => {
   let useCase: GetAllJobApplicationsUseCase;
   let mockRepository: IJobApplicationRepository;
-  let userId: string = '123e4567-e89b-12d3-a456-426614174000';
-  let otherUserId: string = '123e4567-e89b-12d3-a456-426614174001';
-
-  let mockJobApplications: JobApplication[] = createJobApplicationListMock(
+  
+  const userId: string = '123e4567-e89b-12d3-a456-426614174000';
+  const mockJobApplications: JobApplication[] = createJobApplicationListMock(
     4,
     userId,
   );

@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { IJobApplicationRepository } from '@core/domain/repositories/job-application.repository';
+import type { IJobApplicationRepository } from '@core/domain/repositories/job-application.repository';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { DeleteJobApplicationUseCase } from './delete-job-application.use-case';
 
 describe('DeleteJobApplicationUseCase', () => {
