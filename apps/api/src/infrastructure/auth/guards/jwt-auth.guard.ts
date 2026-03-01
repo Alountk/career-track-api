@@ -16,7 +16,9 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
+    const request = context
+      .switchToHttp()
+      .getRequest<Request & { user?: any }>();
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
@@ -24,11 +26,13 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const payload = await this.jwtService.verifyAsync(token, {
         secret: this.configService.get<string>('JWT_SECRET'),
       });
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       request.user = payload;
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid token');
     }
     return true;

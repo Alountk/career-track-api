@@ -33,31 +33,44 @@ export class JobApplicationController {
 
   @Post('')
   @ApiOperation({ summary: 'Create a new job application' })
-  async create(@Body() body: JobDto, @Request() req) {
+  async create(
+    @Body() body: JobDto,
+    @Request() req: { user: { sub: string } },
+  ) {
     const applicationData = { ...body, userId: req.user.sub };
     return await this.createJobApplicationUseCase.execute(applicationData);
   }
 
   @Get('')
   @ApiOperation({ summary: 'Find all job applications' })
-  async findAll(@Request() req) {
+  async findAll(@Request() req: { user: { sub: string } }) {
     return await this.findAllJobApplicationUseCase.execute(req.user.sub);
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Find job by Id' })
-  async findById(@Request() req, @Param('id') id: string) {
+  async findById(
+    @Request() req: { user: { sub: string } },
+    @Param('id') id: string,
+  ) {
     return await this.findJobApplicationByIdUseCase.execute(id, req.user.sub);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a job application' })
-  async delete(@Request() req, @Param('id') id: string) {
+  async delete(
+    @Request() req: { user: { sub: string } },
+    @Param('id') id: string,
+  ) {
     return await this.deleteJobApplicationUseCase.execute(id, req.user.sub);
   }
   @Put(':id')
   @ApiOperation({ summary: 'Update a job application' })
-  async update(@Request() req, @Param('id') id: string, @Body() body: JobDto) {
+  async update(
+    @Request() req: { user: { sub: string } },
+    @Param('id') id: string,
+    @Body() body: JobDto,
+  ) {
     return await this.updateJobApplicationUseCase.execute(
       id,
       req.user.sub,

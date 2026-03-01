@@ -39,7 +39,7 @@ export class AuthController {
   @Get('me')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Get current user profile' })
-  async getProfile(@Request() req) {
+  async getProfile(@Request() req: { user: { email: string } }) {
     return await this.getProfileUseCase.execute(req.user.email);
   }
 }

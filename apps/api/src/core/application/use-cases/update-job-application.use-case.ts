@@ -12,10 +12,6 @@ import {
   JOB_APPLICATION_REPOSITORY,
   type IJobApplicationRepository,
 } from '../ports/job-application.repository';
-import {
-  USER_REPOSITORY,
-  type IUserRepository,
-} from '../ports/user.repository';
 
 export interface UpdateJobApplicationCommand {
   company?: string;

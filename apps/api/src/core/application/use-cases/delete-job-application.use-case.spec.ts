@@ -26,7 +26,6 @@ describe('DeleteJobApplicationUseCase', () => {
     // GIVEN
     jobRepository.findById.mockResolvedValue(null);
     const ownerId = 'user-123';
-    const jobId = 'job-999';
 
     jobRepository.findById.mockResolvedValue(null);
 

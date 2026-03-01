@@ -1,12 +1,11 @@
 import { ApplicationStatus } from '../../domain/entities/job-application.entity';
+import { User } from '../../domain/entities/user.entity';
 import { IJobApplicationRepository } from '../ports/job-application.repository';
 import { IUserRepository } from '../ports/user.repository';
 import { FindAllJobApplicationUseCase } from './find-all-job-application.use-case';
-import { CreateJobApplicationUseCase } from './create-job-application.use-case';
 
 describe('FindAllJobApplicationUseCase', () => {
   let useCase: FindAllJobApplicationUseCase;
-  let createJobApplicationUseCase: CreateJobApplicationUseCase;
   let jobApplicationRepository: jest.Mocked<IJobApplicationRepository>;
   let userRepository: jest.Mocked<IUserRepository>;
 
@@ -24,11 +23,6 @@ describe('FindAllJobApplicationUseCase', () => {
       save: jest.fn(),
       findByEmail: jest.fn(),
     } as unknown as jest.Mocked<IUserRepository>;
-
-    createJobApplicationUseCase = new CreateJobApplicationUseCase(
-      jobApplicationRepository,
-      userRepository,
-    );
 
     useCase = new FindAllJobApplicationUseCase(
       jobApplicationRepository,
@@ -71,7 +65,7 @@ describe('FindAllJobApplicationUseCase', () => {
     jobApplicationRepository.findAllByUserId.mockResolvedValue(jobApplications);
     userRepository.findById.mockResolvedValue({
       id: 'user-id',
-    } as unknown as any);
+    } as unknown as User);
 
     // WHEN (ACTION)
     const result = await useCase.execute(userId);

@@ -1,4 +1,5 @@
 import { ApplicationStatus } from '../../domain/entities/job-application.entity';
+import { User } from '../../domain/entities/user.entity';
 import { IJobApplicationRepository } from '../ports/job-application.repository';
 import { CreateJobApplicationUseCase } from './create-job-application.use-case';
 import { IUserRepository } from '../ports/user.repository';
@@ -44,11 +45,11 @@ describe('CreateJobApplicationUseCase', () => {
     // Mock the repository
     userRepository.findById.mockResolvedValue({
       id: 'user-id',
-    } as unknown as any); // Still any here because of User entity complex constructor, but better than before.
+    } as unknown as User);
     // Wait, I should use the real User or empty object casted to unknown.
     userRepository.findById.mockResolvedValue({
       id: 'user-id',
-    } as unknown as any);
+    } as unknown as User);
 
     // WHEN (ACTION)
     await useCase.execute(data);

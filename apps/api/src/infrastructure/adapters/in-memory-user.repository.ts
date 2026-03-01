@@ -6,15 +6,16 @@ export class InMemoryUserRepository implements IUserRepository {
 
   async save(user: User): Promise<void> {
     this.users.push(user);
+    return Promise.resolve();
   }
 
   async findByEmail(email: string): Promise<User | null> {
     const user = this.users.find((u) => u.email === email);
-    return user || null;
+    return Promise.resolve(user || null);
   }
 
   async findById(id: string): Promise<User | null> {
     const user = this.users.find((u) => u.id === id);
-    return user || null;
+    return Promise.resolve(user || null);
   }
 }

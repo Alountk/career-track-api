@@ -45,6 +45,7 @@ describe('RegisterUserUseCase', () => {
     expect(savedUser.password).not.toBe(data.password);
 
     expect(result).toEqual({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       id: expect.any(String),
       email: data.email,
       role: 'user',

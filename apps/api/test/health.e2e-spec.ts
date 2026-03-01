@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { App } from 'supertest/types';
 import { AppModule } from '../src/app.module';
 
 describe('HealthController (e2e)', () => {
@@ -21,12 +20,14 @@ describe('HealthController (e2e)', () => {
   });
 
   it('/health (GET)', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return request(app.getHttpServer())
       .get('/health')
       .expect(200)
-      .expect((res) => {
-        expect(res.body.status).toBe('ok');
-        expect(res.body.timestamp).toBeDefined();
+      .expect((res: request.Response) => {
+        const body = res.body as { status: string; timestamp: string };
+        expect(body.status).toBe('ok');
+        expect(body.timestamp).toBeDefined();
       });
   });
 });

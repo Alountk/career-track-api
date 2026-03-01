@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ApplicationStatus } from '../../../core/domain/entities/job-application.entity';
-import { IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 
 export class JobDto {
   @ApiProperty({ example: 'Google' })
