@@ -1,18 +1,21 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import type { IJobApplicationRepository } from '../ports/job-application.repository';
 import { JOB_APPLICATION_REPOSITORY } from '../ports/job-application.repository';
-import { ApplicationStatus, JobApplication } from '../../domain/entities/job-application.entity';
+import {
+  ApplicationStatus,
+  JobApplication,
+} from '../../domain/entities/job-application.entity';
 import type { IUserRepository } from '../ports/user.repository';
 import { USER_REPOSITORY } from '../ports/user.repository';
 
 export interface CreateJobApplicationCommand {
-    company: string;
-    position: string;
-    status: ApplicationStatus;
-    userId: string;
-    url?: string;
-    salaryRange?: string;
-    notes?: string;
+  company: string;
+  position: string;
+  status: ApplicationStatus;
+  userId: string;
+  url?: string;
+  salaryRange?: string;
+  notes?: string;
 }
 
 @Injectable()

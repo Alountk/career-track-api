@@ -73,5 +73,5 @@ describe('DeleteJobApplicationUseCase', () => {
 
     // THEN
     expect(jobRepository.delete).toHaveBeenCalledWith(jobId);
-  })
+  });
 });
