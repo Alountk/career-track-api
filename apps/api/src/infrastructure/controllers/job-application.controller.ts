@@ -14,6 +14,7 @@ import { DeleteJobApplicationUseCase } from '../../core/application/use-cases/de
 import { UpdateJobApplicationUseCase } from '../../core/application/use-cases/update-job-application.use-case';
 import { CreateJobApplicationUseCase } from '../../core/application/use-cases/create-job-application.use-case';
 import { FindAllJobApplicationUseCase } from '../../core/application/use-cases/find-all-job-application.use-case';
+import { FindJobApplicationByIdUseCase } from '../../core/application/use-cases/find-job-application-by-id.use-case';
 import { AuthGuard } from '../auth/guards/jwt-auth.guard';
 import { JobDto } from './dtos/job.dto';
 
@@ -25,29 +26,36 @@ export class JobApplicationController {
   constructor(
     private readonly createJobApplicationUseCase: CreateJobApplicationUseCase,
     private readonly findAllJobApplicationUseCase: FindAllJobApplicationUseCase,
+    private readonly findJobApplicationByIdUseCase: FindJobApplicationByIdUseCase,
     private readonly deleteJobApplicationUseCase: DeleteJobApplicationUseCase,
     private readonly updateJobApplicationUseCase: UpdateJobApplicationUseCase,
   ) {}
 
-  @Post('jobs')
+  @Post('')
   @ApiOperation({ summary: 'Create a new job application' })
   async create(@Body() body: JobDto, @Request() req) {
     const applicationData = { ...body, userId: req.user.sub };
     return await this.createJobApplicationUseCase.execute(applicationData);
   }
 
-  @Get('jobs')
+  @Get('')
   @ApiOperation({ summary: 'Find all job applications' })
   async findAll(@Request() req) {
     return await this.findAllJobApplicationUseCase.execute(req.user.sub);
   }
 
-  @Delete('jobs/:id')
+  @Get(':id')
+  @ApiOperation({ summary: 'Find job by Id' })
+  async findById(@Request() req, @Param('id') id: string) {
+    return await this.findJobApplicationByIdUseCase.execute(id, req.user.sub);
+  }
+
+  @Delete(':id')
   @ApiOperation({ summary: 'Delete a job application' })
   async delete(@Request() req, @Param('id') id: string) {
     return await this.deleteJobApplicationUseCase.execute(id, req.user.sub);
   }
-  @Put('jobs/:id')
+  @Put(':id')
   @ApiOperation({ summary: 'Update a job application' })
   async update(@Request() req, @Param('id') id: string, @Body() body: JobDto) {
     return await this.updateJobApplicationUseCase.execute(
