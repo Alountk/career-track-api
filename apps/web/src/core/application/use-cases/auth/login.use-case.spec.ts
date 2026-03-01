@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { IAuthRepository } from '@core/domain/repositories/auth.repository';
-import { LoginUseCase } from './login.use-case';
+import type { IAuthRepository } from '@core/domain/repositories/auth.repository';
 import { createUserSessionMock } from '@test/factories/auth.factory';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { LoginUseCase } from './login.use-case';
 
 describe('LoginUseCase', () => {
   let useCase: LoginUseCase;

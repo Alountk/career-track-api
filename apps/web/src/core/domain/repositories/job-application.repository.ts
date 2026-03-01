@@ -1,4 +1,4 @@
-import { CreateJobApplication, JobApplication } from "../entities/job-application.entity";
+import type { CreateJobApplication, JobApplication } from "../entities/job-application.entity";
 
 export interface IJobApplicationRepository {
   create(jobApplication: CreateJobApplication): Promise<void>;
