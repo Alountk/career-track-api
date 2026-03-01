@@ -9,14 +9,15 @@
     "lint-staged": "^16.3.0"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "pnpm -r test"
   },
   "lint-staged": {
     "apps/api/**/*.ts": [
-      "pnpm run lint --filter career-track-api"
+      "pnpm --filter career-track-api run lint"
     ],
     "apps/web/**/*.{ts,tsx,astro}": [
-      "pnpm run lint --filter @career-track/web"
+      "pnpm --filter @career-track/web run lint"
     ]
   }
 }
