@@ -5,6 +5,6 @@ export class GetAllJobApplicationsUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}
 
   async execute(userId: string): Promise<JobApplication[]> {
-    return this.repository.findAllByUserId(userId);
+    return await this.repository.findAllByUserId(userId);
   }
 }

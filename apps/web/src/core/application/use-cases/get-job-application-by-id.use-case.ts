@@ -5,6 +5,8 @@ export class GetJobApplicationByIdUseCase {
   constructor(private readonly repository: IJobApplicationRepository) {}
 
   async execute(id: string): Promise<JobApplication | null> {
-    return this.repository.findById(id);
+    return await this.repository.findById(id).catch(() => {
+      throw new Error('API Failure');
+    });
   }
 }
