@@ -8,11 +8,13 @@ import type { IJobApplicationRepository } from '@core/domain/repositories/job-ap
 export class FetchJobApplicationRepository
   implements IJobApplicationRepository
 {
-  private readonly baseUrl = 'http://localhost:3000/job-applications'; // For the momento use that but after move into .env
+  private readonly baseUrl = 'http://localhost:3000/job-applications';
+
+  constructor(private readonly authToken?: string) {}
+
   private get headers(): HeadersInit {
-    // Intentamos obtener el token de las cookies (si estamos en entorno cliente)
-    let token = '';
-    if (typeof document !== 'undefined') {
+    let token = this.authToken;
+    if (!token && typeof document !== 'undefined') {
       const match = document.cookie.match(/(?:^|; )auth_token=([^;]*)/);
       if (match && match[1]) {
         token = match[1];
