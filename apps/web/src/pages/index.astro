@@ -1,35 +1,25 @@
 ---
+import MainLayout from '../infrastructure/components/layout/MainLayout.astro';
+import JobCard from '../infrastructure/components/jobs/JobCard.astro';
+import type { JobApplication } from '@core/domain/entities/job-application.entity';
+import { FetchJobApplicationRepository } from '@infrastructure/adapters/job-application/fetch-job-application.repository';
+import { GetAllJobApplicationsUseCase } from '@core/application/use-cases/jobs/get-all-job-applications.use-case';
+
 const token = Astro.cookies.get('auth_token');
 if (!token) {
   return Astro.redirect('/login');
 }
-import MainLayout from '../infrastructure/components/layout/MainLayout.astro';
-import JobCard from '../infrastructure/components/jobs/JobCard.astro';
-import type { JobApplication } from '@core/domain/entities/job-application.entity';
 
-// Harcoded test object
-const mockJobs = [
-  {
-    id: '1',
-    company: 'Google',
-    position: 'Senior Frontend Developer',
-    status: 'INTERVIEWING',
-    userId: 'u1',
-    salaryRange: '120k - 150k €',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: '2',
-    company: 'Stripe',
-    position: 'Product Designer',
-    status: 'OFFER',
-    userId: 'u1',
-    url: 'https://stripe.com/jobs',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-];
+const jobRepo = new FetchJobApplicationRepository(token.value);
+const getAllJobs = new GetAllJobApplicationsUseCase(jobRepo);
+
+let jobs: JobApplication[] = [];
+try {
+  jobs = await getAllJobs.execute();
+} catch (error) {
+  console.error(error);
+}
+
 ---
 
 <MainLayout title="Dashboard | Career Track">
@@ -46,7 +36,13 @@ const mockJobs = [
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {mockJobs.map((job) => <JobCard job={job as unknown as JobApplication} />)}
+      {jobs.length > 0 ? (
+        jobs.map(job => <JobCard job={job} />)
+      ) : (
+        <div class="col-span-full py-20 text-center border-2 border-dashed border-white/5 rounded-3xl">
+          <p class="text-slate-500 font-medium">Aún no has añadido ninguna aplicación.</p>
+        </div>
+      )}
     </div>
   </div>
 </MainLayout>
