@@ -22,12 +22,12 @@ export class FetchAuthRepository implements IAuthRepository {
       throw new Error('Login failed');
     }
     const data = await response.json();
-    const session =  UserSessionSchema.parse(data);
+    const session = UserSessionSchema.parse(data);
 
-      document.cookie = `auth_token=${session.accessToken}; path=/; max-age=86400; SameSite=Lax`;
-      return session;
+    this.setSessionCookie(session.accessToken);
+    return session;
   }
-  
+
   async register(userData: UserData): Promise<UserSession> {
     const response = await fetch(`${this.baseUrl}/register`, {
       method: 'POST',
@@ -38,10 +38,22 @@ export class FetchAuthRepository implements IAuthRepository {
       throw new Error('Register failed');
     }
     const data = await response.json();
-    return UserSessionSchema.parse(data);
+    const session = UserSessionSchema.parse(data);
+
+    this.setSessionCookie(session.accessToken);
+    return session;
   }
-  
+
+  private setSessionCookie(token: string): void {
+    if (typeof document !== 'undefined') {
+      document.cookie = `auth_token=${token}; path=/; max-age=86400; SameSite=Lax`;
+    }
+  }
+
   logout(): void {
-    document.cookie = "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    if (typeof document !== 'undefined') {
+      document.cookie =
+        'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
   }
 }

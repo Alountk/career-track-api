@@ -5,6 +5,7 @@ import { CreateJobApplicationUseCase } from '../core/application/use-cases/creat
 import { DeleteJobApplicationUseCase } from '../core/application/use-cases/delete-job-application.use-case';
 import { FindAllJobApplicationUseCase } from '../core/application/use-cases/find-all-job-application.use-case';
 import { UpdateJobApplicationUseCase } from '../core/application/use-cases/update-job-application.use-case';
+import { FindJobApplicationByIdUseCase } from '../core/application/use-cases/find-job-application-by-id.use-case';
 import { TypeOrmJobApplicationRepository } from './adapters/typeorm-job-application.repository';
 import { AuthModule } from './auth.module';
 import { JobApplicationController } from './controllers/job-application.controller';
@@ -16,6 +17,7 @@ import { JobApplicationOrmEntity } from './persistence/entities/job-application.
   providers: [
     CreateJobApplicationUseCase,
     FindAllJobApplicationUseCase,
+    FindJobApplicationByIdUseCase,
     UpdateJobApplicationUseCase,
     DeleteJobApplicationUseCase,
     {

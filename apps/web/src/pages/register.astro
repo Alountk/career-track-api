@@ -1,0 +1,17 @@
+---
+import MainLayout from '@infrastructure/components/layout/MainLayout.astro';
+import { RegisterForm } from '@infrastructure/components/auth/RegisterForm';
+---
+
+<MainLayout title="Regístrate | Career Track">
+  <div class="min-h-[85vh] flex flex-col items-center justify-center py-10">
+    <a
+      href="/"
+      class="mb-8 text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-nebula-primary to-nebula-secondary"
+    >
+      Career Track
+    </a>
+
+    <RegisterForm client:load />
+  </div>
+</MainLayout>
