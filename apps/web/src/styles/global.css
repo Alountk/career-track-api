@@ -1,1 +1,36 @@
 @import 'tailwindcss';
+
+@theme {
+  /* Midnight Nebula Colors */
+  --color-nebula-950: #0f172a;
+  --color-nebula-800: #1e293b;
+  --color-nebula-primary: #8b5cf6;
+  --color-nebula-secondary: #3b82f6;
+  /* Sahara Colors */
+  --color-sahara-beige: #faf7f0;
+  --color-sahara-primary: #4338ca;
+  --color-sahara-accent: #d97706;
+}
+
+@layer base {
+  :root {
+    /* By default is dark */
+    --bg-app: var(--color-nebula-950);
+    --bg-surface: var(--color-nebula-800);
+    --text-main: #f8fafc;
+    --primary: var(--color-nebula-primary);
+  }
+  :root.light {
+    /* Add .light class for use Sahara colors */
+    --bg-app: var(--color-sahara-beige);
+    --bg-surface: #ffffff;
+    --text-main: #27272a;
+    --primary: var(--color-sahara-primary);
+  }
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
