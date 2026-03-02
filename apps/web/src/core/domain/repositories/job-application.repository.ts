@@ -5,5 +5,5 @@ export interface IJobApplicationRepository {
   update(jobApplication: JobApplication): Promise<boolean>;
   delete(id: string): Promise<void>;
   findById(id: string): Promise<JobApplication | null>;
-  findAllByUserId(userId: string): Promise<JobApplication[]>;
+  findAllByUserId(): Promise<JobApplication[]>;
 }

@@ -79,8 +79,8 @@ export class FetchJobApplicationRepository
     });
   }
 
-  async findAllByUserId(userId: string): Promise<JobApplication[]> {
-    const response = await fetch(`${this.baseUrl}/${userId}`, {
+  async findAllByUserId(): Promise<JobApplication[]> {
+    const response = await fetch(`${this.baseUrl}`, {
       method: 'GET',
       headers: this.headers,
     });
