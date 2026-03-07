@@ -5,10 +5,12 @@
     "apps/*"
   ],
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.3.0"
   },
   "scripts": {
+    "dev": "concurrently \"pnpm --filter career-track-api start:dev\" \"pnpm --filter @career-track/web dev\"",
     "prepare": "husky",
     "test": "pnpm -r test"
   },

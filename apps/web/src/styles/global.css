@@ -2,10 +2,12 @@
 
 @theme {
   /* Midnight Nebula Colors */
-  --color-nebula-950: #0f172a;
+  --color-nebula-950: #020617;
+  --color-nebula-900: #0f172a;
   --color-nebula-800: #1e293b;
-  --color-nebula-primary: #8b5cf6;
+  --color-nebula-primary: #a855f7;
   --color-nebula-secondary: #3b82f6;
+
   /* Sahara Colors */
   --color-sahara-beige: #faf7f0;
   --color-sahara-primary: #4338ca;
@@ -14,23 +16,51 @@
 
 @layer base {
   :root {
-    /* By default is dark */
     --bg-app: var(--color-nebula-950);
-    --bg-surface: var(--color-nebula-800);
+    --bg-surface: rgba(30, 41, 59, 0.5);
     --text-main: #f8fafc;
     --primary: var(--color-nebula-primary);
   }
-  :root.light {
-    /* Add .light class for use Sahara colors */
-    --bg-app: var(--color-sahara-beige);
-    --bg-surface: #ffffff;
-    --text-main: #27272a;
-    --primary: var(--color-sahara-primary);
-  }
+
   body {
     background-color: var(--bg-app);
     color: var(--text-main);
-    font-family: 'Inter', system-ui, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Outfit', system-ui, sans-serif;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Noise Overlay - Premium texture */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.03;
+    z-index: 50;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Instrument Serif', serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }
