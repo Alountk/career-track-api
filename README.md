@@ -1,4 +1,4 @@
-# Career Track - Monorepo
+# Career Tracker - Monorepo
 
 ## 🚀 Project Overview
 
